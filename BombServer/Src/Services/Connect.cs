@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ using BombServerEmu_MNR.Src.Protocols.Clients;
 //TEMP
 using BombServerEmu_MNR.Src.Helpers;
 using BombServerEmu_MNR.Src.Helpers.Extensions;
-using PLGWebSocket;
+using BombServerEmu_MNR.Src.Services.PLGWebSocket;
 
 namespace BombServerEmu_MNR.Src.Services
 {
@@ -50,6 +50,9 @@ namespace BombServerEmu_MNR.Src.Services
                 //xml.AddParam("MMConfigFileSize", "1024");
             }
             client.SendNetcodeData(xml);
+
+            var PLG = new PLGWebSocket();
+            PLG.ConnectAsync().Wait()
         }
 
         public static void TimeSyncRequestHandler(BombService service, IClient client, BombXml xml)
